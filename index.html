@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LinkedIn Strategy, Content & Management</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #f8f9ff;
+    --white: #ffffff;
+    --primary: #0a66c2;
+    --ink: #0b1d2d;
+    --body: #414752;
+    --muted: #585f66;
+    --soft: #e4efff;
+    --soft-2: #eef4ff;
+    --light-blue: #a8c8ff;
+    --border: #d5dce6;
+    --radius-lg: 16px;
+    --radius-md: 12px;
+    --radius-sm: 8px;
+    --shadow: 0 1px 2px rgba(0,0,0,0.05), 0 1px 1px rgba(0,0,0,0.05);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--body);
+    line-height: 1.5;
+    overflow-x: hidden;
+  }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, h4 { color: var(--ink); }
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 50px; }
+  section { position: relative; padding: 80px 0; }
+  .eyebrow {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.6px;
+    text-transform: uppercase; color: var(--primary);
+  }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 28px; border-radius: var(--radius-sm);
+    font-weight: 600; font-size: 15px; letter-spacing: 0.15px;
+    border: none; cursor: pointer; transition: transform .15s ease, opacity .15s ease;
+    font-family: inherit;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+  .btn-primary { background: var(--primary); color: #fff; box-shadow: var(--shadow); }
+  .btn-ghost { background: transparent; color: var(--ink); padding: 14px 16px; }
+  .btn-block { width: 100%; justify-content: center; }
+  .arrow { width: 12px; height: 12px; }
+
+  /* ---------- Section 1: Hero ---------- */
+  .hero { background: var(--bg); padding: 96px 0; overflow: hidden; }
+  .glow-1, .glow-2 {
+    position: absolute; border-radius: 9999px; filter: blur(32px); pointer-events: none;
+  }
+  .glow-1 { left: -80px; top: -128px; width: 384px; height: 384px; background: rgba(168,200,255,0.2); }
+  .glow-2 { right: 0; top: calc(50% + 240px); width: 480px; height: 480px; background: rgba(211,228,251,0.3); transform: translateY(-50%); }
+  .hero-grid {
+    position: relative; display: grid; grid-template-columns: 7fr 5fr;
+    gap: 64px; align-items: center;
+  }
+  .pill {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(10,102,194,0.1); padding: 4px 12px; border-radius: 9999px;
+    margin-bottom: 20px;
+  }
+  .pill .dot { width: 8px; height: 8px; border-radius: 9999px; background: var(--primary); }
+  .hero h1 {
+    font-size: 56px; line-height: 64px; font-weight: 700; letter-spacing: -1.68px;
+    margin-bottom: 24px;
+  }
+  .hero h1 .accent { color: var(--primary); }
+  .hero p.lead {
+    font-size: 18px; line-height: 30px; color: var(--body);
+    max-width: 576px; margin-bottom: 32px; letter-spacing: -0.09px;
+  }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 24px; }
+  .tagline { display: flex; align-items: center; gap: 8px; font-style: italic; font-size: 14px; color: var(--body); }
+  .portrait-wrap { position: relative; max-width: 420px; width: 100%; justify-self: center; }
+  .portrait {
+    position: relative; background: #fff; border-radius: var(--radius-lg);
+    overflow: hidden; aspect-ratio: 3 / 4;
+    box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+    background: linear-gradient(160deg, #cfe0f7 0%, #9fc0ea 55%, #5f8fc9 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.85); font-size: 13px; letter-spacing: 1px;
+  }
+  .portrait .scrim {
+    position: absolute; left: 0; right: 0; bottom: 0; height: 112px;
+    background: linear-gradient(to top, rgba(11,29,45,0.7), rgba(11,29,45,0));
+  }
+  .portrait .caption {
+    position: absolute; left: 16px; right: 16px; bottom: 16px; text-align: center;
+    font-size: 11px; letter-spacing: 1.1px; text-transform: uppercase; color: rgba(255,255,255,0.9);
+  }
+  .badge {
+    position: absolute; background: #fff; display: flex; align-items: center; gap: 10px;
+    padding: 8px 16px; border-radius: 9999px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+    font-size: 13px; font-weight: 500; color: var(--ink); white-space: nowrap;
+  }
+  .badge .ico {
+    width: 28px; height: 28px; border-radius: 9999px; background: var(--soft);
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .badge .ico svg { width: 13px; height: 13px; fill: var(--primary); }
+  .badge-1 { left: -24px; top: -16px; }
+  .badge-2 { right: -24px; top: 46%; }
+  .badge-3 { left: -16px; bottom: -20px; }
+
+  /* ---------- Section 2: Results ---------- */
+  .results { background: var(--bg); }
+  .section-head { text-align: center; max-width: 672px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
+  .section-head h2 { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.8px; }
+  .section-head p { font-size: 16px; line-height: 26px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+  .stat-card {
+    background: #fff; border-radius: var(--radius-lg); padding: 32px;
+    box-shadow: var(--shadow); display: flex; flex-direction: column; justify-content: space-between; gap: 24px;
+  }
+  .stat-num { font-size: 56px; line-height: 56px; font-weight: 700; color: var(--primary); letter-spacing: -1.68px; position: relative; }
+  .stat-num.ink { color: var(--ink); font-size: 40px; line-height: 40px; letter-spacing: -0.8px; }
+  .stat-card h3 { font-size: 22px; line-height: 30px; font-weight: 600; letter-spacing: -0.22px; margin-top: 12px; }
+  .stat-card p { font-size: 14px; line-height: 22px; margin-top: 8px; }
+  .stat-tag {
+    background: rgba(228,239,255,0.4); border-radius: 12px; padding: 24px 16px 8px;
+    font-size: 13px; font-weight: 600; color: var(--body);
+  }
+  .caption-center {
+    text-align: center; font-style: italic; font-size: 16px; line-height: 26px;
+    margin-top: 32px; color: var(--body);
+  }
+  .pillars {
+    margin-top: 48px; background: var(--soft-2); border-radius: var(--radius-lg);
+    padding: 80px 48px 48px;
+  }
+  .pillars .head { max-width: 576px; display: flex; flex-direction: column; gap: 8px; margin-bottom: 40px; }
+  .pillars h3 { font-size: 28px; line-height: 36px; font-weight: 700; letter-spacing: -0.7px; }
+  .pillar-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .pillar {
+    background: #fff; border-radius: var(--radius-md); padding: 24px;
+    box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 8px;
+  }
+  .pillar .icon-box {
+    width: 40px; height: 40px; border-radius: 8px; background: var(--soft);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .pillar .icon-box svg { width: 20px; height: 20px; fill: var(--primary); }
+  .pillar h4 { font-size: 22px; line-height: 30px; font-weight: 600; letter-spacing: -0.22px; padding-top: 8px; }
+  .pillar p { font-size: 14px; line-height: 22px; }
+
+  /* ---------- Section 3: Services + Lead form ---------- */
+  .services { background: var(--bg); padding: 64px 0; }
+  .services-card {
+    background: var(--soft); border-radius: 24px; padding: 56px;
+  }
+  .services-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;
+  }
+  .services-left .eyebrow { padding-bottom: 12px; }
+  .services-left h2 { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.8px; padding-bottom: 16px; }
+  .services-left .intro { font-size: 16px; line-height: 26px; padding-bottom: 32px; }
+  .svc-cards { display: flex; flex-direction: column; gap: 16px; }
+  .svc-card { background: #fff; border-radius: var(--radius-md); padding: 20px; box-shadow: var(--shadow); }
+  .svc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .svc-head svg { width: 18px; height: 18px; fill: var(--primary); flex-shrink: 0; }
+  .svc-head h3 { font-size: 22px; line-height: 30px; font-weight: 600; letter-spacing: -0.22px; }
+  .svc-card > p { font-size: 14px; line-height: 22px; }
+  .svc-list { list-style: none; padding-top: 8px; display: flex; flex-direction: column; gap: 4px; }
+  .svc-list li { position: relative; padding-left: 14px; font-size: 13px; line-height: 19.5px; }
+  .svc-list li::before {
+    content: ""; position: absolute; left: 0; top: 7px; width: 6px; height: 6px;
+    border-radius: 9999px; background: var(--primary);
+  }
+
+  .form-card {
+    background: #fff; border-radius: var(--radius-lg); padding: 32px;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+  }
+  .form-card h3 { font-size: 22px; line-height: 30px; font-weight: 700; letter-spacing: -0.22px; }
+  .form-card .sub { font-size: 14px; line-height: 22px; margin: 4px 0 0; }
+  .lead-form { display: flex; flex-direction: column; gap: 16px; padding-top: 20px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
+  .field label { font-size: 13px; font-weight: 600; letter-spacing: 0.26px; color: var(--ink); }
+  .field input {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius-sm);
+    padding: 12px 16px; font-family: inherit; font-size: 14px; color: var(--ink);
+    outline: none; transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input::placeholder { color: var(--muted); }
+  .field input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(10,102,194,0.15); }
+  .form-status { font-size: 14px; min-height: 20px; }
+  .form-status.ok { color: #13703c; }
+  .form-status.err { color: #b42318; }
+  .form-note { text-align: center; font-size: 12px; line-height: 18px; padding-top: 8px; }
+
+  /* ---------- Section 4: ₹1 Audit offer ---------- */
+  .offer { background: var(--bg); padding: 64px 0; }
+  .offer-card {
+    position: relative; overflow: hidden; background: var(--ink); border-radius: 24px;
+    padding: 64px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.25);
+  }
+  .offer-card .glow {
+    position: absolute; right: -128px; top: -128px; width: 320px; height: 320px;
+    border-radius: 9999px; background: rgba(10,102,194,0.2); filter: blur(32px);
+  }
+  .offer-grid {
+    position: relative; display: grid; grid-template-columns: 7fr 5fr; gap: 40px; align-items: center;
+  }
+  .offer-left { display: flex; flex-direction: column; gap: 12px; }
+  .offer-left .eyebrow { color: var(--light-blue); letter-spacing: 1.2px; }
+  .offer-left h2 { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.8px; color: #fff; }
+  .offer-left .intro { max-width: 576px; padding-top: 4px; font-size: 18px; line-height: 30px; color: rgba(218,234,255,0.9); }
+  .checklist { display: flex; flex-direction: column; gap: 12px; padding-top: 20px; }
+  .checklist div { display: flex; gap: 12px; align-items: flex-start; color: #fff; font-size: 16px; line-height: 26px; }
+  .checklist svg { width: 16.67px; height: 16.67px; fill: var(--light-blue); flex-shrink: 0; margin-top: 5px; }
+  .offer-left .closer { padding-top: 12px; font-style: italic; font-size: 16px; color: var(--light-blue); }
+  .price-card {
+    background: rgba(255,255,255,0.1); backdrop-filter: blur(6px);
+    border-radius: 16px; padding: 32px; text-align: center; color: #fff;
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+  }
+  .price-card .tier { font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase; color: var(--light-blue); }
+  .price-card .price { font-size: 56px; line-height: 56px; font-weight: 700; letter-spacing: -1.68px; color: var(--light-blue); }
+  .price-card .desc { font-size: 14px; line-height: 22px; color: #daeaff; padding-bottom: 12px; }
+  .btn-light {
+    width: 100%; justify-content: center; background: var(--light-blue); color: var(--ink);
+    padding: 16px 24px; border-radius: 12px; font-weight: 700; font-size: 15px;
+    box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+  }
+  .price-fine { font-size: 11px; line-height: 16.5px; color: rgba(228,239,255,0.7); padding-top: 8px; }
+
+  /* ---------- Section 5: Testimonials ---------- */
+  .reviews { background: var(--bg); }
+  .reviews .section-head { text-align: left; margin: 0; max-width: 672px; }
+  .reviews .section-head h2 { text-align: left; }
+  .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+  .review {
+    background: #fff; border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow);
+    display: flex; flex-direction: column; justify-content: space-between; gap: 26px;
+  }
+  .review .tag { font-size: 11px; letter-spacing: 0.55px; text-transform: uppercase; color: var(--primary); margin-bottom: 16px; }
+  .review blockquote { font-style: italic; font-size: 16px; line-height: 26px; color: var(--ink); }
+  .review .who {
+    display: flex; align-items: center; gap: 12px;
+    background: rgba(228,239,255,0.3); border-radius: 12px; padding: 24px 16px 12px;
+  }
+  .avatar {
+    width: 40px; height: 40px; border-radius: 9999px; display: flex; align-items: center; justify-content: center;
+    font-size: 14px; font-weight: 700; flex-shrink: 0;
+  }
+  .who .name { font-size: 15px; font-weight: 600; letter-spacing: 0.15px; color: var(--ink); }
+  .who .role { font-size: 12px; line-height: 18px; color: var(--body); }
+
+  /* ---------- Section 6: FAQ ---------- */
+  .faq { background: var(--bg); }
+  .faq-wrap { max-width: 800px; margin: 0 auto; padding: 0; display: flex; flex-direction: column; gap: 48px; }
+  .faq-head { display: flex; flex-direction: column; gap: 8px; text-align: center; align-items: center; }
+  .faq-head h2 { font-size: 40px; line-height: 48px; font-weight: 600; letter-spacing: -0.8px; }
+  .faq-head p { font-size: 16px; line-height: 26px; padding-top: 4px; }
+  .faq-list { display: flex; flex-direction: column; gap: 16px; }
+  details.faq-item { background: #fff; border-radius: var(--radius-md); box-shadow: 0 1px 2px rgba(0,0,0,0.05); overflow: hidden; }
+  details.faq-item summary {
+    list-style: none; cursor: pointer; display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 24px; font-size: 22px; line-height: 30px; font-weight: 600; letter-spacing: -0.22px; color: var(--ink);
+  }
+  details.faq-item summary::-webkit-details-marker { display: none; }
+  details.faq-item summary::after {
+    content: ""; width: 12px; height: 7.4px; flex-shrink: 0; margin-left: 16px;
+    background: var(--primary);
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    transition: transform .2s ease;
+  }
+  details.faq-item[open] summary::after { transform: rotate(180deg); }
+  details.faq-item .answer { padding: 0 24px 20px; font-size: 14px; line-height: 22px; }
+
+  footer { background: var(--bg); padding: 32px 0 48px; text-align: center; font-size: 12px; color: var(--muted); }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 1024px) {
+    .wrap { padding: 0 32px; }
+    .hero h1 { font-size: 44px; line-height: 52px; letter-spacing: -1.2px; }
+    .stat-grid, .pillar-grid, .review-grid { grid-template-columns: 1fr; }
+    .pillars { padding: 56px 32px 32px; }
+    .hero-grid, .offer-grid, .services-grid { grid-template-columns: 1fr; gap: 48px; }
+    .services-card, .offer-card { padding: 40px 32px; }
+    .badge-1 { left: 8px; } .badge-2 { right: 8px; } .badge-3 { left: 8px; }
+  }
+  @media (max-width: 640px) {
+    .wrap { padding: 0 20px; }
+    section { padding: 56px 0; }
+    .hero { padding: 64px 0; }
+    .hero h1 { font-size: 36px; line-height: 44px; letter-spacing: -0.9px; }
+    .section-head h2, .services-left h2, .offer-left h2, .faq-head h2 { font-size: 30px; line-height: 38px; }
+    .cta-row { flex-direction: column; align-items: stretch; }
+    .cta-row .btn { justify-content: center; }
+    .portrait-wrap { max-width: 100%; }
+    .badge { font-size: 12px; }
+    .badge-2 { right: 0; }
+    .services-card, .offer-card { padding: 28px 20px; border-radius: 18px; }
+    details.faq-item summary { font-size: 17px; line-height: 24px; padding: 16px 18px; }
+    .faq-wrap { padding: 0; }
+    .pillars h3 { font-size: 24px; line-height: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Section 1: Hero -->
+<section class="hero" id="top">
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="pill"><span class="dot"></span><span class="eyebrow">LINKEDIN STRATEGY • CONTENT • MANAGEMENT</span></div>
+        <h1>You’re good at what you<br />do.<br /><span class="accent">Let’s make sure LinkedIn<br />knows it.</span></h1>
+        <p class="lead">Build a LinkedIn presence that reflects your expertise and helps the right people find you. From content strategy and scripting to ongoing management, I help you show up with something worth saying.</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://payments.cashfree.com/forms/getaudit" target="_blank" rel="noopener">
+            Book Your ₹1 LinkedIn Audit
+            <svg class="arrow" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#services">
+            See How I Can Help
+            <svg class="arrow" viewBox="0 0 9 6" fill="none" style="width:9px;height:6px"><path d="M1 1l3.5 3.5L8 1" stroke="#0b1d2d" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="tagline">
+          <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1.5l1.7 3.9 4.3.4-3.2 2.9.9 4.2-3.7-2.2-3.7 2.2.9-4.2L1.5 5.8l4.3-.4z" fill="#0a66c2"/></svg>
+          <span>Your ideas. Your voice. A plan you can keep up with.</span>
+        </div>
+      </div>
+
+      <div class="portrait-wrap">
+        <div class="portrait">
+          <span>[PORTRAIT PHOTO]</span>
+          <div class="scrim"></div>
+          <div class="caption">[FOUNDER NAME] • [BRAND NAME]</div>
+        </div>
+        <div class="badge badge-1">
+          <span class="ico"><svg viewBox="0 0 14 14"><path d="M2 7.2l3 3L12 3.5" stroke="#0a66c2" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span>A clearer content strategy</span>
+        </div>
+        <div class="badge badge-2">
+          <span class="ico"><svg viewBox="0 0 12 12"><circle cx="6" cy="6" r="5" fill="#0a66c2"/></svg></span>
+          <span>Posts that sound like you</span>
+        </div>
+        <div class="badge badge-3">
+          <span class="ico"><svg viewBox="0 0 12 13"><rect x="1" y="1" width="10" height="11" rx="2" fill="#0a66c2"/></svg></span>
+          <span>Consistent, thoughtful presence</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 2: Achievement & Results -->
+<section class="results">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Good content gets noticed.<br />A clear strategy gives it direction.</h2>
+      <p>Every profile has a different starting point. Here’s what my work has helped clients achieve.</p>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">[X]+</div>
+          <h3>Professionals supported</h3>
+          <p>Founders, senior consultants, &amp; independent advisors positioning their executive voice.</p>
+        </div>
+        <div class="stat-tag">Verified Partner Impact</div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <div class="stat-num">[X]+</div>
+          <h3>Posts created</h3>
+          <p>Tailored precisely to each client’s distinct tone, avoiding generic viral templating.</p>
+        </div>
+        <div class="stat-tag">Custom Scripted Narratives</div>
+      </div>
+      <div class="stat-card">
+        <div>
+          <div class="stat-num ink">[Verified]</div>
+          <h3>[Time period / context]</h3>
+          <p>Clear profile positioning &amp; sustained inbound visibility without vanity metric dependency.</p>
+        </div>
+        <div class="stat-tag">Direct High-Value Inbound</div>
+      </div>
+    </div>
+
+    <p class="caption-center">Behind those numbers are people who found their voice, shared their work, and started showing up with purpose.</p>
+
+    <div class="pillars">
+      <div class="head">
+        <span class="eyebrow">OUR COLLABORATIVE FOCUS</span>
+        <h3>What We’ll Work Towards</h3>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar">
+          <div class="icon-box"><svg viewBox="0 0 20 20"><path d="M10 2a5 5 0 00-3 9v2h6v-2a5 5 0 00-3-9zM7 16h6v1.5H7z"/></svg></div>
+          <h4>A profile that explains your value</h4>
+          <p>Clear headlines, engaging About section, and unambiguous positioning that immediately informs qualified peers why your insights matter.</p>
+        </div>
+        <div class="pillar">
+          <div class="icon-box"><svg viewBox="0 0 15 20"><path d="M2 2h11v16l-5.5-4L2 18z"/></svg></div>
+          <h4>Content built around your expertise</h4>
+          <p>Extracting your real client stories, frameworks, and insights into relatable, thoughtful posts that foster genuine professional discussions.</p>
+        </div>
+        <div class="pillar">
+          <div class="icon-box"><svg viewBox="0 0 20 20"><path d="M3 4h14v13H3zM3 8h14" fill="none" stroke="#0a66c2" stroke-width="1.6"/></svg></div>
+          <h4>A consistent publishing rhythm</h4>
+          <p>A sustainable, organized content calendar you don’t dread opening each Monday morning, backed by organized drafting and revision.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 3: Services + Lead Form -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="services-card">
+      <div class="services-grid">
+        <div class="services-left">
+          <span class="eyebrow">SERVICES &amp; ENQUIRY</span>
+          <h2>You bring the expertise.<br />Let’s find the words.</h2>
+          <p class="intro">Whether you’re starting from scratch or posting without much response, tell me where you are and what you want LinkedIn to do for you.</p>
+
+          <div class="svc-cards">
+            <div class="svc-card">
+              <div class="svc-head">
+                <svg viewBox="0 0 18 18"><path d="M2 14l4-4 3 3 7-7v4h2V2h-6v2h4l-5 5-3-3-5 5z"/></svg>
+                <h3>Strategy</h3>
+              </div>
+              <p>A clear direction for your profile, audience, and content.</p>
+              <ul class="svc-list">
+                <li>Comprehensive profile teardown &amp; optimization</li>
+                <li>Target audience mapping &amp; peer positioning</li>
+                <li>3 distinct pillar frameworks matching your domain</li>
+              </ul>
+            </div>
+            <div class="svc-card">
+              <div class="svc-head">
+                <svg viewBox="0 0 20 16" style="width:19.5px;height:16px"><path d="M2 2h16v10H9l-4 3v-3H2z"/></svg>
+                <h3>Scripting</h3>
+              </div>
+              <p>Posts shaped around your ideas and written in your voice.</p>
+              <ul class="svc-list">
+                <li>45-minute monthly brainstorm interview</li>
+                <li>Turnkey ghostwritten drafts preserving nuance</li>
+                <li>Iterative editorial revisions until it sounds right</li>
+              </ul>
+            </div>
+            <div class="svc-card">
+              <div class="svc-head">
+                <svg viewBox="0 0 20 20" style="width:20px;height:20px"><path d="M3 4h14v13H3zM3 8h14M7 2v4M13 2v4" fill="none" stroke="#0a66c2" stroke-width="1.6"/></svg>
+                <h3>Management</h3>
+              </div>
+              <p>Support with planning, approvals, and publishing.</p>
+              <ul class="svc-list">
+                <li>Structured weekly calendar organization</li>
+                <li>Direct scheduling &amp; format testing (carousels, text)</li>
+                <li>Comment engagement guidelines &amp; monthly reviews</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <h3>Tell me about your LinkedIn goals</h3>
+          <p class="sub">I’ll review your details and get in touch about the next step.</p>
+
+          <form class="lead-form" id="leadForm" novalidate>
+            <div class="field">
+              <label for="name">Your name *</label>
+              <input id="name" name="name" type="text" placeholder="e.g., Sarah Jenkins" autocomplete="name" required />
+            </div>
+            <div class="field">
+              <label for="email">Email address *</label>
+              <input id="email" name="email" type="email" placeholder="e.g., sarah@example.com" autocomplete="email" required />
+            </div>
+            <div class="field">
+              <label for="phone">Phone number *</label>
+              <input id="phone" name="phone" type="tel" placeholder="e.g., +91 98765 43210" autocomplete="tel" required />
+            </div>
+
+            <button class="btn btn-primary btn-block" id="submitBtn" type="submit">
+              Let’s Talk LinkedIn
+              <svg class="arrow" viewBox="0 0 12 12" fill="none"><path d="M2 6h8M7 3l3 3-3 3" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+
+          <p class="form-note">Treat this as a design prototype. Responses are handled directly by [Founder Name].</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 4: ₹1 Audit Offer -->
+<section class="offer">
+  <div class="wrap">
+    <div class="offer-card">
+      <div class="glow"></div>
+      <div class="offer-grid">
+        <div class="offer-left">
+          <span class="eyebrow">A SIMPLE PLACE TO START</span>
+          <h2>Not sure what’s holding your<br />LinkedIn back?</h2>
+          <p class="intro">Get a fresh look at your profile and content, with practical suggestions you can act on immediately.</p>
+          <div class="checklist">
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7"/></svg><span>A review of your profile’s first impression</span></div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7"/></svg><span>Feedback on your headline and About section</span></div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7"/></svg><span>Content topics that fit your expertise</span></div>
+            <div><svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7"/></svg><span>A few changes to focus on first</span></div>
+          </div>
+          <p class="closer">You’ll leave knowing where to start—and why.</p>
+        </div>
+
+        <div class="price-card">
+          <span class="tier">INTRODUCTORY SESSION</span>
+          <div class="price">₹1</div>
+          <div class="desc">One LinkedIn audit session • [Duration]-minute<br />session</div>
+          <a class="btn-light" href="https://payments.cashfree.com/forms/getaudit" target="_blank" rel="noopener" style="display:flex;text-decoration:none;">Book My Audit for ₹1</a>
+          <p class="price-fine">[Eligibility, availability, and cancellation terms: 1 session per professional. Subject to schedule availability. Bookings processed securely.]</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 5: Reviews -->
+<section class="reviews">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">CLIENT PERSPECTIVES</span>
+      <h2>What it’s like to work together</h2>
+      <p>The best feedback comes from the people behind the profiles.</p>
+    </div>
+
+    <div class="review-grid">
+      <div class="review">
+        <div>
+          <div class="tag">[APPROVED CLIENT TESTIMONIAL: VOICE]</div>
+          <blockquote>“I was hesitant to hire anyone because I was worried it would sound generic. [Founder Name] took the time to understand my nuance—people tell me my posts sound exactly like me having a conversation.”</blockquote>
+        </div>
+        <div class="who">
+          <div class="avatar" style="background:#0a66c2;color:#fff;">SJ</div>
+          <div>
+            <div class="name">[Client Name]</div>
+            <div class="role">[Founder / CEO, Tech Advisory]</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div>
+          <div class="tag">[APPROVED CLIENT TESTIMONIAL: RESULTS]</div>
+          <blockquote>“Within three weeks of rethinking my headline and core topics, my inbound connection requests shifted completely from random recruiters to qualified prospective clients.”</blockquote>
+        </div>
+        <div class="who">
+          <div class="avatar" style="background:#e4efff;color:#0a66c2;">MR</div>
+          <div>
+            <div class="name">[Client Name]</div>
+            <div class="role">[Management Consultant]</div>
+          </div>
+        </div>
+      </div>
+      <div class="review">
+        <div>
+          <div class="tag">[APPROVED CLIENT TESTIMONIAL: SUPPORT]</div>
+          <blockquote>“Having a clear calendar and someone holding me accountable made LinkedIn sustainable. I no longer spend Sunday nights wondering what to write on Monday.”</blockquote>
+        </div>
+        <div class="who">
+          <div class="avatar" style="background:#dce3eb;color:#151c22;">AK</div>
+          <div>
+            <div class="name">[Client Name]</div>
+            <div class="role">[Independent Fractional CFO]</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Section 6: FAQ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="faq-wrap">
+      <div class="faq-head">
+        <span class="eyebrow">CLARIFICATIONS</span>
+        <h2>A few things you might be wondering</h2>
+        <p>Clear answers about commitments, voice match, and expectations.</p>
+      </div>
+
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>I’m new to LinkedIn. Can you help me start?</summary>
+          <div class="answer">[Answer to be added]</div>
+        </details>
+        <details class="faq-item">
+          <summary>What do your LinkedIn services include?</summary>
+          <div class="answer">[Answer to be added]</div>
+        </details>
+        <details class="faq-item">
+          <summary>Will the content sound like me?</summary>
+          <div class="answer">[Answer to be added]</div>
+        </details>
+        <details class="faq-item">
+          <summary>How much time will I need to spend?</summary>
+          <div class="answer">[Answer to be added]</div>
+        </details>
+        <details class="faq-item">
+          <summary>How quickly will I see results?</summary>
+          <div class="answer">[Answer to be added]</div>
+        </details>
+        <details class="faq-item">
+          <summary>What happens during the ₹1 audit?</summary>
+          <div class="answer">[Answer to be added]</div>
+        </details>
+        <details class="faq-item">
+          <summary>Do you only work with people who want more followers?</summary>
+          <div class="answer">[Answer to be added]</div>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>© <span id="year"></span> [BRAND NAME]</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Apps Script Web App URL (deployed, Anyone access)
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxRa0wEATEopkxDlLnFifgDj3CJXOfn7l_erYfKSi_FB3_wZ9VV0vaq-kmsj_fIk0ha/exec";
+
+  const form = document.getElementById('leadForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const statusEl = document.getElementById('formStatus');
+
+  function showSuccess() {
+    statusEl.className = 'form-status ok';
+    statusEl.textContent = 'Thanks! I’ll review your details and get in touch shortly.';
+    form.reset();
+    submitBtn.disabled = false;
+  }
+
+  function showError() {
+    statusEl.className = 'form-status err';
+    statusEl.textContent = 'Something went wrong. Please try again in a moment.';
+    submitBtn.disabled = false;
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+
+    if (!name || !email || !phone) {
+      statusEl.className = 'form-status err';
+      statusEl.textContent = 'Please fill in name, email and phone.';
+      return;
+    }
+
+    statusEl.className = 'form-status';
+    statusEl.textContent = 'Sending…';
+    submitBtn.disabled = true;
+
+    const url = SCRIPT_URL + "?" + new URLSearchParams({ name, email, phone });
+
+    fetch(url, { method: "GET", mode: "no-cors" })
+      .then(() => showSuccess())
+      .catch(() => showError());
+  });
+</script>
+</body>
+</html>
